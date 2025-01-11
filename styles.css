@@ -7,68 +7,72 @@ body {
     padding: 0;
 }
 
-/* Chat container with Karen's screen image */
+/* Chat container styled as Karen's screen */
 .chat-container {
-    background: url('karen_screen.png') no-repeat center center;
+    background: url('karen_screen_transparent.png') no-repeat center center; /* Use the transparent Karen image */
     background-size: contain;
-    width: 600px;
-    height: 400px;
-    margin: 100px auto;
+    width: 750px; /* Increased size to 1.5x */
+    height: 525px; /* Increased size to 1.5x */
     position: relative;
+    margin: 50px auto;
+    padding: 40px; /* Adjust padding */
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;
-    color: #00ff00; /* Green text for Karen's style */
+    color: white;
 }
 
-/* Chat messages area */
+/* Chat messages area styled to fit the screen */
 #messages {
-    width: 80%;
-    height: 50%;
+    flex: 1;
+    max-height: 400px; /* Increased height */
     overflow-y: auto;
-    background: transparent;
-    font-size: 14px;
-    line-height: 1.5;
-    color: #00ff00;
+    margin-bottom: 20px;
     padding: 10px;
-    box-sizing: border-box;
-    margin-top: 50px;
+    background-color: rgba(0, 0, 0, 0.8); /* Slightly darker for readability */
+    border-radius: 5px;
+    color: #00ff00; /* Green text to match Karen's aesthetic */
+    font-size: 16px;
+    line-height: 1.5;
 }
 
-/* Input container */
+/* Input container and input styling */
 .input-container {
-    width: 80%;
     display: flex;
-    align-items: center;
-    margin-bottom: 10px;
+    position: absolute;
+    bottom: 20px;
+    width: 90%;
 }
 
-/* Input field styling */
 #userMessage {
     flex: 1;
     padding: 10px;
-    font-size: 14px;
-    border: 1px solid #00ff00;
-    background-color: black;
-    color: #00ff00;
-    outline: none;
+    border: 1px solid #bdc3c7;
     border-radius: 5px;
+    outline: none;
+    font-size: 16px;
 }
 
-/* Send button styling */
 #sendButton {
-    margin-left: 10px;
+    background-color: #e74c3c;
+    color: white;
     padding: 10px;
-    font-size: 14px;
-    background-color: #00ff00;
-    color: black;
     border: none;
     border-radius: 5px;
+    margin-left: 10px;
     cursor: pointer;
-    font-weight: bold;
+    font-size: 16px;
 }
 
 #sendButton:hover {
-    background-color: #00cc00;
+    background-color: #c0392b;
+}
+
+/* Error message styling */
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+    display: none;
 }
