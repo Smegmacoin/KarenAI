@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat with Karen AI</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Linking your CSS -->
+    <link rel="stylesheet" href="styles.css"> <!-- Linking external CSS -->
     <style>
-        /* Inline styles to adjust Karen's head and layout */
+        /* Full-page Bikini Bottom background */
         body {
             background: url('bikini-bottom.jpg') no-repeat center center fixed;
             background-size: cover;
@@ -13,35 +15,43 @@
             font-family: Arial, sans-serif;
         }
 
-        .chat-container {
-            background: url('karen_screen.png') no-repeat center center; /* Karen's head as the background */
-            background-size: contain;
-            width: 500px; /* Adjust width to match Karen's proportions */
-            height: 400px; /* Adjust height to match Karen's proportions */
+        /* Container for Karen's screen */
+        .karen-container {
             position: relative;
+            width: 700px; /* Adjusted for larger size */
+            height: 500px; /* Adjusted for larger size */
             margin: 50px auto;
-            padding: 20px;
-            box-sizing: border-box;
-            color: white;
+            background: url('karen_screen_transparent.png') no-repeat center center;
+            background-size: contain;
+        }
+
+        /* Chat box layered on top of Karen's screen */
+        .chat-container {
+            position: absolute;
+            top: 20%;
+            left: 10%;
+            width: 80%; /* Adjust width to fit */
+            height: 60%; /* Adjust height to fit */
+            background-color: rgba(0, 0, 0, 0.8); /* Transparent dark overlay */
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            color: #00ff00; /* Green text color */
         }
 
         #messages {
-            max-height: 200px;
+            flex: 1;
             overflow-y: auto;
-            margin-bottom: 15px;
             padding: 10px;
-            background-color: rgba(0, 0, 0, 0.7); /* Dark overlay for readability */
-            border-radius: 5px;
-            color: #00ff00; /* Matching green color */
             font-size: 14px;
             line-height: 1.5;
         }
 
         .input-container {
             display: flex;
-            position: absolute;
-            bottom: 20px;
-            width: 90%;
+            margin-top: 10px;
         }
 
         #userMessage {
@@ -52,7 +62,6 @@
             outline: none;
             background-color: black;
             color: #00ff00;
-            font-size: 14px;
         }
 
         #sendButton {
@@ -70,12 +79,11 @@
             background-color: #00cc00;
         }
 
+        /* Typing effect text */
         #typing-effect {
             display: none;
-            color: #00ff00;
+            color: yellow;
             font-weight: bold;
-            position: absolute;
-            bottom: 70px;
         }
 
         .error {
@@ -87,42 +95,46 @@
     </style>
 </head>
 <body>
-    <div class="chat-container">
-        <div id="messages">
-            <p>Karen AI: Hello! Ask me anything about SpongeBob SquarePants!</p>
+    <!-- Karen's Screen Container -->
+    <div class="karen-container">
+        <!-- Chat Box -->
+        <div class="chat-container">
+            <div id="messages">
+                <p>Karen AI: Hello! Ask me anything about SpongeBob SquarePants!</p>
+            </div>
+            <div id="typing-effect">Karen AI is typing...</div>
+            <div class="input-container">
+                <input type="text" id="userMessage" placeholder="Type your message here">
+                <button id="sendButton">Send</button>
+            </div>
+            <p id="error" class="error">There was an error connecting to the server.</p>
         </div>
-        <div id="typing-effect">Karen AI is typing...</div>
-        <div class="input-container">
-            <input type="text" id="userMessage" placeholder="Type your message here" />
-            <button id="sendButton">Send</button>
-        </div>
-        <p id="error" class="error">There was an error connecting to the server.</p>
     </div>
 
     <script>
         document.getElementById("sendButton").addEventListener("click", sendMessage);
 
         function sendMessage() {
-            const message = document.getElementById("userMessage").value.trim();
-            if (!message) return;
-
+            const userMessage = document.getElementById("userMessage").value.trim();
             const messagesContainer = document.getElementById("messages");
             const typingEffect = document.getElementById("typing-effect");
 
+            if (!userMessage) return;
+
             // Add user's message
-            messagesContainer.innerHTML += `<p>You: ${message}</p>`;
+            messagesContainer.innerHTML += `<p>You: ${userMessage}</p>`;
             document.getElementById("userMessage").value = ""; // Clear input field
 
             // Show typing effect
             typingEffect.style.display = "block";
 
-            // Simulate server response
+            // Fetch response from the server
             fetch("https://karenai-3cf70a46a331.herokuapp.com/chat", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ message: message }),
+                body: JSON.stringify({ message: userMessage }),
             })
                 .then((response) => response.json())
                 .then((data) => {
@@ -130,7 +142,7 @@
                     if (data.response) {
                         messagesContainer.innerHTML += `<p>Karen AI: ${data.response}</p>`;
                     } else {
-                        messagesContainer.innerHTML += `<p>Karen AI: I didn't understand that.</p>`;
+                        messagesContainer.innerHTML += `<p>Karen AI: Hmm, I didn't get that!</p>`;
                     }
                 })
                 .catch((error) => {
