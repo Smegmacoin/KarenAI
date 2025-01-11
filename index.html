@@ -18,21 +18,21 @@
         /* Container for Karen's screen */
         .karen-container {
             position: relative;
-            width: 700px; /* Adjusted for larger size */
-            height: 500px; /* Adjusted for larger size */
+            width: 700px; /* Adjusted size for Karen PNG */
+            height: 450px; /* Adjusted size */
             margin: 50px auto;
             background: url('karen_screen_transparent.png') no-repeat center center;
             background-size: contain;
         }
 
-        /* Chat box layered on top of Karen's screen */
+        /* Chat box layered inside Karen's screen */
         .chat-container {
             position: absolute;
-            top: 20%;
-            left: 10%;
-            width: 80%; /* Adjust width to fit */
-            height: 60%; /* Adjust height to fit */
-            background-color: rgba(0, 0, 0, 0.8); /* Transparent dark overlay */
+            top: 18%; /* Adjusted to fit the black area */
+            left: 12%; /* Centered inside the black area */
+            width: 76%; /* Adjust width to fit inside */
+            height: 64%; /* Adjust height to fit inside */
+            background-color: rgba(0, 0, 0, 0.9); /* Transparent dark overlay */
             border-radius: 10px;
             overflow: hidden;
             display: flex;
