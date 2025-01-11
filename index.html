@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat with Karen AI</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
-        /* Background */
+        /* Full-page Bikini Bottom background */
         body {
             background: url('bikini-bottom.jpg') no-repeat center center fixed;
             background-size: cover;
@@ -18,40 +17,37 @@
         /* Karen's Screen */
         .karen-container {
             position: relative;
-            width: 50vw; /* Proportion of viewport width */
-            height: 50vh; /* Proportion of viewport height */
-            margin: 5vh auto; /* Center the screen vertically and horizontally */
+            width: 50vw; /* Karen's screen width */
+            height: 50vh; /* Karen's screen height */
+            margin: 5vh auto; /* Center the screen */
             background: url('karen_screen_transparent.png') no-repeat center center;
             background-size: contain;
         }
 
-        /* Chat box inside Karen's black screen */
+        /* Chat box */
         .chat-container {
             position: absolute;
-            top: 18%; /* Adjust to fit within the black screen */
-            left: 9%; /* Adjust to fit within the black screen */
-            width: 82%; /* Width of the black screen */
-            height: 70%; /* Height of the black screen */
-            background-color: rgba(0, 0, 0, 0.8); /* Transparent dark overlay */
-            border-radius: 10px;
+            top: 15%; /* Adjust to align inside Karen’s screen */
+            left: 10%;
+            width: 80%; /* Fit width */
+            height: 70%; /* Fit height */
             display: flex;
             flex-direction: column;
-            padding: 10px;
-            box-sizing: border-box;
-            color: #00ff00;
-            overflow: hidden; /* Prevent messages from spilling out */
+            color: #00ff00; /* Green text */
+            overflow: hidden;
         }
 
-        /* Messages Area */
+        /* Message area */
         #messages {
             flex: 1;
             overflow-y: auto;
             font-size: 14px;
             line-height: 1.5;
             color: #00ff00;
+            padding: 10px; /* Slight padding for text */
         }
 
-        /* Input Area */
+        /* Input area */
         .input-container {
             display: flex;
             margin-top: 10px;
@@ -62,7 +58,7 @@
             padding: 10px;
             border: 1px solid #00ff00;
             border-radius: 5px;
-            background-color: black;
+            background-color: transparent; /* No background */
             color: #00ff00;
             font-size: 14px;
         }
@@ -88,17 +84,11 @@
             color: yellow;
             font-weight: bold;
         }
-
-        /* Error Message */
-        .error {
-            color: red;
-            font-size: 12px;
-            display: none;
-        }
     </style>
 </head>
 <body>
     <div class="karen-container">
+        <!-- Chat Box inside Karen's screen -->
         <div class="chat-container">
             <div id="messages">
                 <p>Karen AI: Hello! Ask me anything about SpongeBob SquarePants!</p>
@@ -108,7 +98,6 @@
                 <input type="text" id="userMessage" placeholder="Type your message here">
                 <button id="sendButton">Send</button>
             </div>
-            <p id="error" class="error">There was an error connecting to the server.</p>
         </div>
     </div>
 
@@ -148,7 +137,6 @@
                 })
                 .catch((error) => {
                     typingEffect.style.display = "none"; // Hide typing effect
-                    document.getElementById("error").style.display = "block"; // Show error message
                     console.error("Error:", error);
                 });
         }
