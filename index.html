@@ -17,39 +17,44 @@
         /* Karen's Screen */
         .karen-container {
             position: relative;
-            width: 50vw; /* Karen's screen width */
-            height: 50vh; /* Karen's screen height */
-            margin: 5vh auto; /* Center the screen */
+            width: 50vw; /* Adjust width as per screen */
+            height: 50vh; /* Adjust height as per screen */
+            margin: 5vh auto; /* Center on the page */
             background: url('karen_screen_transparent.png') no-repeat center center;
             background-size: contain;
         }
 
-        /* Chat box */
+        /* Chat container inside Karen's screen */
         .chat-container {
             position: absolute;
-            top: 15%; /* Adjust to align inside Karen’s screen */
-            left: 10%;
-            width: 80%; /* Fit width */
-            height: 70%; /* Fit height */
+            top: 15%; /* Adjust to position inside the screen */
+            left: 5%;
+            width: 90%; /* Chat width inside Karen's screen */
+            height: 70%; /* Chat height inside Karen's screen */
+            background-color: rgba(0, 0, 0, 0.7); /* Dark transparent background for text visibility */
+            border-radius: 10px;
+            padding: 10px;
+            box-sizing: border-box;
             display: flex;
             flex-direction: column;
-            color: #00ff00; /* Green text */
+            justify-content: space-between;
+            color: #00ff00; /* Green text color */
             overflow: hidden;
         }
 
-        /* Message area */
+        /* Messages container */
         #messages {
             flex: 1;
             overflow-y: auto;
             font-size: 14px;
             line-height: 1.5;
-            color: #00ff00;
-            padding: 10px; /* Slight padding for text */
+            padding: 10px;
         }
 
         /* Input area */
         .input-container {
             display: flex;
+            align-items: center;
             margin-top: 10px;
         }
 
@@ -58,9 +63,10 @@
             padding: 10px;
             border: 1px solid #00ff00;
             border-radius: 5px;
-            background-color: transparent; /* No background */
+            background-color: transparent;
             color: #00ff00;
             font-size: 14px;
+            outline: none;
         }
 
         #sendButton {
