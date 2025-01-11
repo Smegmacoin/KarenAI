@@ -2,20 +2,27 @@
 <html>
 <head>
     <title>Chat with Karen AI</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Linking your existing CSS -->
+    <link rel="stylesheet" href="styles.css"> <!-- Linking your CSS -->
     <style>
-        /* Additional inline styles for Karen's head and typing effect */
+        /* Inline styles to adjust Karen's head and layout */
+        body {
+            background: url('bikini-bottom.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
         .chat-container {
-            background: url('karen-head.png') no-repeat center center; /* Karen's head as the background */
+            background: url('karen_screen.png') no-repeat center center; /* Karen's head as the background */
             background-size: contain;
             width: 500px; /* Adjust width to match Karen's proportions */
-            height: 350px; /* Adjust height to match Karen's proportions */
+            height: 400px; /* Adjust height to match Karen's proportions */
             position: relative;
             margin: 50px auto;
             padding: 20px;
             box-sizing: border-box;
             color: white;
-            font-family: Arial, sans-serif;
         }
 
         #messages {
@@ -23,9 +30,11 @@
             overflow-y: auto;
             margin-bottom: 15px;
             padding: 10px;
-            background-color: rgba(0, 0, 0, 0.8); /* Slightly darker background for text readability */
+            background-color: rgba(0, 0, 0, 0.7); /* Dark overlay for readability */
             border-radius: 5px;
-            color: #ecf0f1;
+            color: #00ff00; /* Matching green color */
+            font-size: 14px;
+            line-height: 1.5;
         }
 
         .input-container {
@@ -38,31 +47,42 @@
         #userMessage {
             flex: 1;
             padding: 10px;
-            border: 1px solid #bdc3c7;
+            border: 1px solid #00ff00;
             border-radius: 5px;
             outline: none;
+            background-color: black;
+            color: #00ff00;
+            font-size: 14px;
         }
 
         #sendButton {
-            background-color: #e74c3c;
-            color: white;
+            background-color: #00ff00;
+            color: black;
             padding: 10px;
             border: none;
             border-radius: 5px;
             margin-left: 10px;
             cursor: pointer;
+            font-weight: bold;
         }
 
         #sendButton:hover {
-            background-color: #c0392b;
+            background-color: #00cc00;
         }
 
         #typing-effect {
             display: none;
-            color: green;
+            color: #00ff00;
             font-weight: bold;
             position: absolute;
-            bottom: 60px;
+            bottom: 70px;
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-top: 10px;
+            display: none;
         }
     </style>
 </head>
@@ -76,10 +96,10 @@
             <input type="text" id="userMessage" placeholder="Type your message here" />
             <button id="sendButton">Send</button>
         </div>
-        <p id="error" class="error" style="color: red; display: none;">There was an error connecting to the server.</p>
+        <p id="error" class="error">There was an error connecting to the server.</p>
     </div>
+
     <script>
-        // Function to handle sending messages
         document.getElementById("sendButton").addEventListener("click", sendMessage);
 
         function sendMessage() {
