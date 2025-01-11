@@ -17,41 +17,42 @@
         /* Karen's Screen */
         .karen-container {
             position: relative;
-            width: 50vw; /* Karen's screen width */
-            height: 50vh; /* Karen's screen height */
-            margin: 5vh auto; /* Center the screen */
+            width: 60vw; /* 60% of viewport width */
+            height: 45vw; /* Adjust height proportionally to width */
+            margin: 5vh auto; /* Center Karen on the page */
             background: url('karen_screen_transparent.png') no-repeat center center;
             background-size: contain;
         }
 
-        /* Chat box */
+        /* Chat box inside Karen's screen */
         .chat-container {
             position: absolute;
-            top: 15%; /* Adjust to align inside Karen’s screen */
-            left: 10%;
-            width: 80%; /* Fit width */
-            height: 70%; /* Fit height */
-            background-color: rgba(0, 0, 0, 0.8); /* Dark transparent background for text visibility */
+            top: 12%; /* Adjust to align inside Karen’s screen */
+            left: 9%;
+            width: 82%; /* Width fits within the screen */
+            height: 78%; /* Height fits within the screen */
+            background-color: rgba(0, 0, 0, 0.8); /* Dark transparent background */
             border-radius: 10px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            overflow: hidden;
             padding: 10px;
             box-sizing: border-box;
+            color: #00ff00; /* Green text */
         }
 
-        /* Messages container */
+        /* Message display area */
         #messages {
             flex: 1;
             overflow-y: auto;
             font-size: 14px;
             line-height: 1.5;
             color: #00ff00;
-            padding: 10px; /* Slight padding for text */
+            padding: 10px;
+            box-sizing: border-box;
         }
 
-        /* Input area */
+        /* Input and send button area */
         .input-container {
             display: flex;
             align-items: center;
@@ -63,29 +64,27 @@
             padding: 10px;
             border: 1px solid #00ff00;
             border-radius: 5px;
-            background-color: transparent;
+            background-color: black;
             color: #00ff00;
             font-size: 14px;
-            outline: none;
         }
 
         #sendButton {
             margin-left: 10px;
-            padding: 10px;
+            padding: 10px 20px;
             background-color: #00ff00;
             color: black;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
-            flex-shrink: 0; /* Prevent shrinking of the Send button */
         }
 
         #sendButton:hover {
             background-color: #00cc00;
         }
 
-        /* Typing Effect */
+        /* Typing effect */
         #typing-effect {
             display: none;
             color: yellow;
@@ -95,7 +94,6 @@
 </head>
 <body>
     <div class="karen-container">
-        <!-- Chat Box inside Karen's screen -->
         <div class="chat-container">
             <div id="messages">
                 <p>Karen AI: Hello! Ask me anything about SpongeBob SquarePants!</p>
@@ -125,7 +123,7 @@
             // Show typing effect
             typingEffect.style.display = "block";
 
-            // Fetch response from the server
+            // Simulate server response
             fetch("https://karenai-3cf70a46a331.herokuapp.com/chat", {
                 method: "POST",
                 headers: {
@@ -144,6 +142,7 @@
                 })
                 .catch((error) => {
                     typingEffect.style.display = "none"; // Hide typing effect
+                    messagesContainer.innerHTML += `<p>Karen AI: Oops! There was an error.</p>`;
                     console.error("Error:", error);
                 });
         }
