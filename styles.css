@@ -7,7 +7,7 @@ body {
     padding: 0;
 }
 
-/* Chat container styled as Karen's screen */
+/* Chat container with Karen's screen image */
 .chat-container {
     background: url('karen_screen.png') no-repeat center center;
     background-size: contain;
@@ -15,33 +15,33 @@ body {
     height: 400px;
     margin: 100px auto;
     position: relative;
-    color: #00ff00; /* Green text to match Karen's style */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    color: #00ff00; /* Green text for Karen's style */
 }
 
-/* Chat messages area styled to fit the screen */
+/* Chat messages area */
 #messages {
     width: 80%;
-    height: 60%;
+    height: 50%;
     overflow-y: auto;
-    position: absolute;
-    top: 15%;
-    left: 10%;
-    background: transparent; /* Transparent to show Karen's screen */
+    background: transparent;
     font-size: 14px;
     line-height: 1.5;
-    color: #00ff00; /* Green text for messages */
+    color: #00ff00;
     padding: 10px;
     box-sizing: border-box;
+    margin-top: 50px;
 }
 
-/* Input container styled for Karen's head */
+/* Input container */
 .input-container {
-    position: absolute;
-    bottom: 10%;
-    left: 10%;
     width: 80%;
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
 }
 
 /* Input field styling */
