@@ -14,23 +14,21 @@ body {
 /* Karen's screen container */
 .karen-container {
     position: relative;
-    width: 90vw; /* Makes Karen's screen responsive to viewport width */
-    max-width: 700px; /* Ensures it doesn't get too large on big screens */
-    height: auto;
+    width: 90vw; /* Responsive width */
+    max-width: 700px; /* Max width for larger screens */
+    aspect-ratio: 16 / 9; /* Maintain proportions */
     background: url('karen_screen_transparent.png') no-repeat center center;
     background-size: contain;
-    padding: 20px;
-    box-sizing: border-box;
 }
 
 /* Chat box inside Karen's screen */
 .chat-container {
     position: absolute;
-    top: 25%; /* Adjust to fit within Karen's screen */
-    left: 10%;
-    width: 80%;
-    height: 55%;
-    background-color: rgba(0, 0, 0, 0.8); /* Transparent overlay for text visibility */
+    top: 18%; /* Adjusted to fit inside Karen's screen */
+    left: 10%; /* Positioned correctly within the PNG */
+    width: 80%; /* Matches proportions of Karen's screen */
+    height: 60%; /* Adjust to fit */
+    background-color: rgba(0, 0, 0, 0.7); /* Transparent overlay for readability */
     border-radius: 10px;
     overflow: hidden;
     display: flex;
