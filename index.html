@@ -57,47 +57,59 @@
             color: #e74c3c;
             font-size: 14px;
             margin-top: 10px;
+            display: none; /* Initially hidden */
         }
     </style>
 </head>
 <body>
     <div class="chat-container">
         <h1>Chat with Karen AI</h1>
-        <div id="messages">Karen AI: Hello! Ask me anything about SpongeBob SquarePants!</div>
+        <div id="messages">
+            <p>Karen AI: Hello! Ask me anything about SpongeBob SquarePants!</p>
+        </div>
         <div class="input-container">
             <input type="text" id="userMessage" placeholder="Type your message here" />
             <button id="sendButton">Send</button>
         </div>
-        <p id="error" class="error" style="display: none;">There was an error connecting to the server.</p>
+        <p id="error" class="error">There was an error connecting to the server.</p>
     </div>
     <script>
+        // Function to handle sending messages
         document.getElementById("sendButton").addEventListener("click", sendMessage);
 
         function sendMessage() {
-            const message = document.getElementById("userMessage").value;
+            const message = document.getElementById("userMessage").value.trim();
             if (!message) return;
 
+            // Display user's message
             document.getElementById("messages").innerHTML += `<p>You: ${message}</p>`;
-            document.getElementById("userMessage").value = "";
+            document.getElementById("userMessage").value = ""; // Clear input field
+            document.getElementById("error").style.display = "none"; // Hide error
 
-            fetch("https://your-backend-url/chat", {
+            // Send the message to the backend
+            fetch("https://karenai-3cf70a46a331.herokuapp.com/chat", { // Added your backend URL
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({ message: message }),
             })
-                .then((response) => response.json())
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+                    return response.json();
+                })
                 .then((data) => {
                     if (data.response) {
                         document.getElementById("messages").innerHTML += `<p>Karen AI: ${data.response}</p>`;
                     } else {
-                        document.getElementById("messages").innerHTML += `<p>Karen AI: Something went wrong.</p>`;
+                        document.getElementById("messages").innerHTML += `<p>Karen AI: I didn't understand that.</p>`;
                     }
                 })
                 .catch((error) => {
-                    document.getElementById("error").style.display = "block";
                     console.error("Error:", error);
+                    document.getElementById("error").style.display = "block"; // Show error message
                 });
         }
     </script>
