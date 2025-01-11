@@ -10,21 +10,21 @@ body {
 /* Container for Karen's screen */
 .karen-container {
     position: relative;
-    width: 700px; /* Adjusted for larger size */
-    height: 500px; /* Adjusted for larger size */
+    width: 700px; /* Adjusted size for Karen PNG */
+    height: 450px; /* Adjusted size */
     margin: 50px auto;
     background: url('karen_screen_transparent.png') no-repeat center center;
     background-size: contain;
 }
 
-/* Chat box layered on top of Karen's screen */
+/* Chat box layered inside Karen's screen */
 .chat-container {
     position: absolute;
-    top: 20%;
-    left: 10%;
-    width: 80%; /* Adjust width to fit */
-    height: 60%; /* Adjust height to fit */
-    background-color: rgba(0, 0, 0, 0.8); /* Transparent dark overlay */
+    top: 18%; /* Adjusted to fit the black area */
+    left: 12%; /* Centered inside the black area */
+    width: 76%; /* Adjust width to fit inside */
+    height: 64%; /* Adjust height to fit inside */
+    background-color: rgba(0, 0, 0, 0.9); /* Transparent dark overlay */
     border-radius: 10px;
     overflow: hidden;
     display: flex;
@@ -33,7 +33,7 @@ body {
     color: #00ff00; /* Green text color */
 }
 
-/* Messages area */
+/* Messages container inside the chat box */
 #messages {
     flex: 1;
     overflow-y: auto;
@@ -42,13 +42,13 @@ body {
     line-height: 1.5;
 }
 
-/* Input container */
+/* Input field and send button container */
 .input-container {
     display: flex;
     margin-top: 10px;
 }
 
-/* Input box */
+/* Input field styling */
 #userMessage {
     flex: 1;
     padding: 10px;
@@ -57,10 +57,9 @@ body {
     outline: none;
     background-color: black;
     color: #00ff00;
-    font-size: 14px;
 }
 
-/* Send button */
+/* Send button styling */
 #sendButton {
     background-color: #00ff00;
     color: black;
@@ -72,19 +71,19 @@ body {
     font-weight: bold;
 }
 
+/* Hover effect for the send button */
 #sendButton:hover {
     background-color: #00cc00;
 }
 
-/* Typing effect text */
+/* Typing effect text styling */
 #typing-effect {
     display: none;
     color: yellow;
     font-weight: bold;
-    margin-top: 5px;
 }
 
-/* Error message */
+/* Error message styling */
 .error {
     color: red;
     font-size: 12px;
