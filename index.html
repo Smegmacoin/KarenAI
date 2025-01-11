@@ -6,7 +6,7 @@
     <title>Chat with Karen AI</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Full-page Bikini Bottom background */
+        /* Background */
         body {
             background: url('bikini-bottom.jpg') no-repeat center center fixed;
             background-size: cover;
@@ -15,33 +15,34 @@
             font-family: Arial, sans-serif;
         }
 
-        /* Karen screen container */
+        /* Karen's Screen */
         .karen-container {
             position: relative;
-            width: 80vw; /* 80% of viewport width */
-            height: 65vh; /* 65% of viewport height */
-            margin: 5vh auto; /* Center with margin */
+            width: 50vw; /* Proportion of viewport width */
+            height: 50vh; /* Proportion of viewport height */
+            margin: 5vh auto; /* Center the screen vertically and horizontally */
             background: url('karen_screen_transparent.png') no-repeat center center;
             background-size: contain;
         }
 
-        /* Chat box positioned inside Karen's screen */
+        /* Chat box inside Karen's black screen */
         .chat-container {
             position: absolute;
-            top: 15%; /* Adjust position within the screen */
-            left: 10%;
-            width: 80%; /* Width to fit within Karen's screen */
-            height: 70%; /* Height to fit within Karen's screen */
-            background-color: rgba(0, 0, 0, 0.8); /* Dark transparent background */
+            top: 18%; /* Adjust to fit within the black screen */
+            left: 9%; /* Adjust to fit within the black screen */
+            width: 82%; /* Width of the black screen */
+            height: 70%; /* Height of the black screen */
+            background-color: rgba(0, 0, 0, 0.8); /* Transparent dark overlay */
             border-radius: 10px;
             display: flex;
             flex-direction: column;
             padding: 10px;
             box-sizing: border-box;
             color: #00ff00;
+            overflow: hidden; /* Prevent messages from spilling out */
         }
 
-        /* Message area */
+        /* Messages Area */
         #messages {
             flex: 1;
             overflow-y: auto;
@@ -50,7 +51,7 @@
             color: #00ff00;
         }
 
-        /* Input area */
+        /* Input Area */
         .input-container {
             display: flex;
             margin-top: 10px;
@@ -63,6 +64,7 @@
             border-radius: 5px;
             background-color: black;
             color: #00ff00;
+            font-size: 14px;
         }
 
         #sendButton {
@@ -80,14 +82,14 @@
             background-color: #00cc00;
         }
 
-        /* Typing effect */
+        /* Typing Effect */
         #typing-effect {
             display: none;
             color: yellow;
             font-weight: bold;
         }
 
-        /* Error message */
+        /* Error Message */
         .error {
             color: red;
             font-size: 12px;
