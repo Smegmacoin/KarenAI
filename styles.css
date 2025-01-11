@@ -1,68 +1,53 @@
-/* General Styling */
 body {
-    margin: 0;
+    background: url('bikini-bottom.jpg') no-repeat center center fixed;
+    background-size: cover; /* Make the image cover the entire background */
     font-family: Arial, sans-serif;
-    background-color: #add8e6; /* Bikini Bottom light blue */
+    margin: 0;
+    padding: 0;
+    color: #fff; /* Set a default text color for readability */
 }
 
-/* Bikini Bottom Background */
-.bikini-bottom {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-image: url('bikini_bottom.jpg'); /* Add Bikini Bottom background image */
-    background-size: cover;
-    background-position: center;
+.chat-container {
+    max-width: 500px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: rgba(44, 62, 80, 0.9); /* Semi-transparent dark background for contrast */
+    border-radius: 15px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    color: #ecf0f1;
 }
 
-/* Karen's Head Styling */
-.karen-head {
-    background-color: #333; /* Karen's screen color */
-    width: 400px;
-    height: 500px;
-    border-radius: 20px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 10px;
-    border: 5px solid #000; /* Black border like Karen's screen */
-}
-
-/* Chat Box */
-.chat-box {
-    flex: 1;
+#messages {
+    max-height: 300px;
     overflow-y: auto;
-    background-color: #222;
-    color: #fff;
     padding: 10px;
+    background-color: rgba(52, 73, 94, 0.8);
     border-radius: 10px;
-    margin-bottom: 10px;
 }
 
-/* Input Area */
-.input-area {
+.input-container {
     display: flex;
-    gap: 5px;
+    margin-top: 15px;
 }
 
-input[type="text"] {
+#userMessage {
     flex: 1;
     padding: 10px;
-    border: 1px solid #ccc;
     border-radius: 5px;
+    border: 1px solid #bdc3c7;
+    outline: none;
 }
 
-button {
-    padding: 10px 15px;
-    background-color: orange;
+#sendButton {
+    padding: 10px;
+    margin-left: 10px;
+    background-color: #e74c3c;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
-button:hover {
-    background-color: darkorange;
+#sendButton:hover {
+    background-color: #c0392b;
 }
