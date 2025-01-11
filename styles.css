@@ -1,11 +1,11 @@
 /* Chat box layered on top of Karen's screen */
 .chat-container {
     position: absolute;
-    top: 25%; /* Adjusted to fit inside Karen's screen */
-    left: 13%; /* Centered horizontally in the screen area */
-    width: 74%; /* Width fits inside the screen */
-    height: 50%; /* Height fits inside the screen */
-    background-color: rgba(0, 0, 0, 0.8); /* Transparent dark overlay */
+    top: 20%; /* Adjusted to fit perfectly inside the PNG screen */
+    left: 12%; /* Centered horizontally in the screen area */
+    width: 76%; /* Width adjusted for a snug fit */
+    height: 55%; /* Height adjusted for a snug fit */
+    background-color: rgba(0, 0, 0, 0.85); /* Transparent dark overlay */
     border-radius: 10px;
     overflow: hidden;
     display: flex;
@@ -14,19 +14,24 @@
     color: #00ff00; /* Green text color */
 }
 
+/* Messages area */
 #messages {
     flex: 1;
     overflow-y: auto;
     padding: 10px;
     font-size: 14px;
     line-height: 1.5;
+    background: none; /* No background so it blends into the chat container */
+    color: #00ff00;
 }
 
+/* Input container at the bottom */
 .input-container {
     display: flex;
     margin-top: 10px;
 }
 
+/* Input field */
 #userMessage {
     flex: 1;
     padding: 10px;
@@ -37,6 +42,7 @@
     color: #00ff00;
 }
 
+/* Send button */
 #sendButton {
     background-color: #00ff00;
     color: black;
@@ -50,4 +56,11 @@
 
 #sendButton:hover {
     background-color: #00cc00;
+}
+
+/* Typing effect */
+#typing-effect {
+    display: none;
+    color: yellow;
+    font-weight: bold;
 }
