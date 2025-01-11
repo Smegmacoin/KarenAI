@@ -5,33 +5,39 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 /* Karen's screen container */
 .karen-container {
     position: relative;
-    width: 700px; /* Adjusted for larger screen size */
-    height: 500px;
-    margin: 50px auto;
+    width: 90vw; /* Makes Karen's screen responsive to viewport width */
+    max-width: 700px; /* Ensures it doesn't get too large on big screens */
+    height: auto;
     background: url('karen_screen_transparent.png') no-repeat center center;
     background-size: contain;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 /* Chat box inside Karen's screen */
 .chat-container {
     position: absolute;
-    top: 20%; /* Adjust position to fit inside Karen's screen */
+    top: 25%; /* Adjust to fit within Karen's screen */
     left: 10%;
-    width: 80%; /* Adjust width relative to the screen */
-    height: 60%; /* Adjust height to fit the visible area */
-    background-color: rgba(0, 0, 0, 0.8); /* Transparent dark overlay for readability */
+    width: 80%;
+    height: 55%;
+    background-color: rgba(0, 0, 0, 0.8); /* Transparent overlay for text visibility */
     border-radius: 10px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     padding: 10px;
-    color: #00ff00; /* Green text color for Karen */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* Subtle shadow */
+    color: #00ff00;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 /* Chat messages area */
@@ -47,7 +53,7 @@ body {
 /* Typing effect */
 #typing-effect {
     display: none;
-    color: yellow;
+    color: #00ff00;
     font-weight: bold;
 }
 
