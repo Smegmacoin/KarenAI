@@ -1,34 +1,38 @@
 <!DOCTYPE html>
 <html>
-<head><link rel="stylesheet" href="styles.css">
+<head>
     <title>Chat with Karen AI</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Linking your existing CSS -->
     <style>
-        body {
-            background-color: #add8e6; /* Bikini Bottom water-like background */
+        /* Additional inline styles for Karen's head and typing effect */
+        .chat-container {
+            background: url('karen-head.png') no-repeat center center; /* Karen's head as the background */
+            background-size: contain;
+            width: 500px; /* Adjust width to match Karen's proportions */
+            height: 350px; /* Adjust height to match Karen's proportions */
+            position: relative;
+            margin: 50px auto;
+            padding: 20px;
+            box-sizing: border-box;
+            color: white;
             font-family: Arial, sans-serif;
         }
 
-        .chat-container {
-            max-width: 400px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #2c3e50; /* Dark color for Karen's screen */
-            color: #ecf0f1;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
         #messages {
-            max-height: 300px;
+            max-height: 200px;
             overflow-y: auto;
             margin-bottom: 15px;
             padding: 10px;
-            background-color: #34495e;
+            background-color: rgba(0, 0, 0, 0.8); /* Slightly darker background for text readability */
             border-radius: 5px;
+            color: #ecf0f1;
         }
 
         .input-container {
             display: flex;
+            position: absolute;
+            bottom: 20px;
+            width: 90%;
         }
 
         #userMessage {
@@ -53,25 +57,26 @@
             background-color: #c0392b;
         }
 
-        .error {
-            color: #e74c3c;
-            font-size: 14px;
-            margin-top: 10px;
-            display: none; /* Initially hidden */
+        #typing-effect {
+            display: none;
+            color: green;
+            font-weight: bold;
+            position: absolute;
+            bottom: 60px;
         }
     </style>
 </head>
 <body>
     <div class="chat-container">
-        <h1>Chat with Karen AI</h1>
         <div id="messages">
             <p>Karen AI: Hello! Ask me anything about SpongeBob SquarePants!</p>
         </div>
+        <div id="typing-effect">Karen AI is typing...</div>
         <div class="input-container">
             <input type="text" id="userMessage" placeholder="Type your message here" />
             <button id="sendButton">Send</button>
         </div>
-        <p id="error" class="error">There was an error connecting to the server.</p>
+        <p id="error" class="error" style="color: red; display: none;">There was an error connecting to the server.</p>
     </div>
     <script>
         // Function to handle sending messages
@@ -81,35 +86,37 @@
             const message = document.getElementById("userMessage").value.trim();
             if (!message) return;
 
-            // Display user's message
-            document.getElementById("messages").innerHTML += `<p>You: ${message}</p>`;
-            document.getElementById("userMessage").value = ""; // Clear input field
-            document.getElementById("error").style.display = "none"; // Hide error
+            const messagesContainer = document.getElementById("messages");
+            const typingEffect = document.getElementById("typing-effect");
 
-            // Send the message to the backend
-            fetch("https://karenai-3cf70a46a331.herokuapp.com/chat", { // Added your backend URL
+            // Add user's message
+            messagesContainer.innerHTML += `<p>You: ${message}</p>`;
+            document.getElementById("userMessage").value = ""; // Clear input field
+
+            // Show typing effect
+            typingEffect.style.display = "block";
+
+            // Simulate server response
+            fetch("https://karenai-3cf70a46a331.herokuapp.com/chat", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({ message: message }),
             })
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error("Network response was not ok");
-                    }
-                    return response.json();
-                })
+                .then((response) => response.json())
                 .then((data) => {
+                    typingEffect.style.display = "none"; // Hide typing effect
                     if (data.response) {
-                        document.getElementById("messages").innerHTML += `<p>Karen AI: ${data.response}</p>`;
+                        messagesContainer.innerHTML += `<p>Karen AI: ${data.response}</p>`;
                     } else {
-                        document.getElementById("messages").innerHTML += `<p>Karen AI: I didn't understand that.</p>`;
+                        messagesContainer.innerHTML += `<p>Karen AI: I didn't understand that.</p>`;
                     }
                 })
                 .catch((error) => {
-                    console.error("Error:", error);
+                    typingEffect.style.display = "none"; // Hide typing effect
                     document.getElementById("error").style.display = "block"; // Show error message
+                    console.error("Error:", error);
                 });
         }
     </script>
