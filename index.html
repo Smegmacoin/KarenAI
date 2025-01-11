@@ -17,7 +17,7 @@
         /* Karen's Screen */
         .karen-container {
             position: relative;
-            width: 60vw; /* 60% of viewport width */
+            width: 60vw; /* Karen's screen width */
             height: 45vw; /* Adjust height proportionally to width */
             margin: 5vh auto; /* Center Karen on the page */
             background: url('karen_screen_transparent.png') no-repeat center center;
@@ -61,23 +61,25 @@
 
         #userMessage {
             flex: 1;
-            padding: 10px;
+            padding: 5px; /* Reduced padding */
             border: 1px solid #00ff00;
             border-radius: 5px;
             background-color: black;
             color: #00ff00;
-            font-size: 14px;
+            font-size: 12px; /* Reduced font size */
+            height: 30px; /* Reduced height */
         }
 
         #sendButton {
             margin-left: 10px;
-            padding: 10px 20px;
+            padding: 5px 15px; /* Adjust padding for smaller size */
             background-color: #00ff00;
             color: black;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-weight: bold;
+            font-size: 12px; /* Reduced font size */
+            height: 30px; /* Match input box height */
         }
 
         #sendButton:hover {
