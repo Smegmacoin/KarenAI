@@ -3,97 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat with Karen AI</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-        h1 {
-            margin-top: 20px;
-        }
-        #chatBox {
-            width: 80%;
-            max-width: 600px;
-            margin: 20px auto;
-            border: 1px solid #ccc;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: left;
-            overflow-y: auto;
-            height: 300px;
-            background: #f9f9f9;
-        }
-        #userMessage {
-            width: 70%;
-            padding: 10px;
-            margin: 10px 5px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-        button {
-            padding: 10px 20px;
-            border: none;
-            background-color: #007bff;
-            color: white;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <title>Karen AI</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Chat with Karen AI</h1>
-    <div id="chatBox">
-        <p><strong>Karen AI:</strong> Hello! Ask me anything about SpongeBob SquarePants!</p>
+    <div class="background">
+        <div class="karen-container">
+            <div class="karen-head">
+                <div class="chat-interface">
+                    <div id="chat-box">
+                        <div id="messages">
+                            <!-- Messages will appear here -->
+                        </div>
+                    </div>
+                    <div class="input-area">
+                        <input type="text" id="user-input" placeholder="Type your message here...">
+                        <button onclick="sendMessage()">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <input type="text" id="userMessage" placeholder="Type your message here...">
-    <button onclick="sendMessage()">Send</button>
-    <script>
-        function sendMessage() {
-            const userMessage = document.getElementById('userMessage').value;
-            const chatBox = document.getElementById('chatBox');
-
-            if (!userMessage.trim()) {
-                alert('Please enter a message!');
-                return;
-            }
-
-            // Display the user's message
-            chatBox.innerHTML += `<p><strong>You:</strong> ${userMessage}</p>`;
-            document.getElementById('userMessage').value = '';
-
-            // Send the message to the backend
-            fetch('https://karenai-3cf70a46a331.herokuapp.com/chat', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ message: userMessage }),
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Display the AI's response
-                if (data.response) {
-                    chatBox.innerHTML += `<p><strong>Karen AI:</strong> ${data.response}</p>`;
-                } else {
-                    chatBox.innerHTML += `<p><strong>Karen AI:</strong> Sorry, I couldn't understand that.</p>`;
-                }
-                chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll to the bottom
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                chatBox.innerHTML += `<p><strong>Karen AI:</strong> There was an error connecting to the server.</p>`;
-            });
-        }
-    </script>
-    <footer>
-        <p>Powered by Karen AI</p>
-    </footer>
+    <script src="scripts.js"></script>
 </body>
 </html>
