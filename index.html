@@ -17,21 +17,21 @@
         /* Karen's Screen */
         .karen-container {
             position: relative;
-            width: 60vw; /* Karen's screen width */
-            height: 45vw; /* Adjust height proportionally to width */
-            margin: 5vh auto; /* Center Karen on the page */
+            width: 60vw; /* Adjust width for screen size */
+            height: 45vw; /* Keep proportional to width */
+            margin: 5vh auto; /* Center the container */
             background: url('karen_screen_transparent.png') no-repeat center center;
             background-size: contain;
         }
 
-        /* Chat box inside Karen's screen */
+        /* Chat box */
         .chat-container {
             position: absolute;
-            top: 12%; /* Adjust to align inside Karen’s screen */
-            left: 9%;
-            width: 82%; /* Width fits within the screen */
-            height: 78%; /* Height fits within the screen */
-            background-color: rgba(0, 0, 0, 0.8); /* Dark transparent background */
+            top: 15%; /* Align inside the screen */
+            left: 10%;
+            width: 80%; /* Fit within the screen */
+            height: 70%; /* Fit within the screen */
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
             border-radius: 10px;
             display: flex;
             flex-direction: column;
@@ -48,38 +48,37 @@
             font-size: 14px;
             line-height: 1.5;
             color: #00ff00;
-            padding: 10px;
-            box-sizing: border-box;
         }
 
-        /* Input and send button area */
+        /* Input box and button */
         .input-container {
             display: flex;
+            justify-content: space-between;
             align-items: center;
             margin-top: 10px;
         }
 
         #userMessage {
             flex: 1;
-            padding: 5px; /* Reduced padding */
+            padding: 5px;
             border: 1px solid #00ff00;
             border-radius: 5px;
             background-color: black;
             color: #00ff00;
-            font-size: 12px; /* Reduced font size */
-            height: 30px; /* Reduced height */
+            font-size: 12px;
+            height: 30px;
         }
 
         #sendButton {
             margin-left: 10px;
-            padding: 5px 15px; /* Adjust padding for smaller size */
+            padding: 0 15px;
             background-color: #00ff00;
             color: black;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 12px; /* Reduced font size */
-            height: 30px; /* Match input box height */
+            font-size: 12px;
+            height: 30px;
         }
 
         #sendButton:hover {
@@ -125,7 +124,7 @@
             // Show typing effect
             typingEffect.style.display = "block";
 
-            // Simulate server response
+            // Fetch response from the server
             fetch("https://karenai-3cf70a46a331.herokuapp.com/chat", {
                 method: "POST",
                 headers: {
@@ -144,7 +143,6 @@
                 })
                 .catch((error) => {
                     typingEffect.style.display = "none"; // Hide typing effect
-                    messagesContainer.innerHTML += `<p>Karen AI: Oops! There was an error.</p>`;
                     console.error("Error:", error);
                 });
         }
